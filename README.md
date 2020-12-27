@@ -22,14 +22,19 @@ The data store will also support the following non-functional requirements:
 1. A client process is allowed to access the data store using multiple threads, if it desires to The data store must therefore be thread-safe.
 1. The client will bear as little memory costs as possible to use this data store, while deriving maximum performance with respect to response times for accessing the data store.
 
+## Overview
+The application has been developed as a library so that users can just import it and create an instance of the class and work with the data store by invoking relevant methods. The application satisfies both the **functional and non-functional requirements mentioned above**.
+
 ## Development Environment
 * OS: Windows 10
 * Language(s) used: Python
 
 The application **doesn't have any Windows specific dependencies and should run without any problems in Mac and Linux as well**.
 
-## Overview
-The application has been developed as a library so that users can just import it and create an instance of the class and work with the data store by invoking relevant methods. The application satisfies both the **functional and non-functional requirements mentioned above**.
+## File Structure
+```datastore.py``` - The library that contains the methods for performing CRUD Operations.
+```example.py``` - An example to demonstrate the CRUD Operations.
+```datastore.json``` - Used for storing the JSON objects
 
 ## Screenshots
 
