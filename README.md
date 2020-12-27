@@ -23,12 +23,21 @@ The data store will also support the following non-functional requirements:
 1. The client will bear as little memory costs as possible to use this data store, while deriving maximum performance with respect to response times for accessing the data store.
 
 ## Development Environment
-OS: Windows 10
-Language(s) used: Python
+* OS: Windows 10
+* Language(s) used: Python
+
 The application **doesn't have any Windows specific dependencies and should run without any problems in Mac and Linux as well**.
 
 ## Overview
 The application has been developed as a library so that users can just import it and create an instance of the class and work with the data store by invoking relevant methods. The application satisfies both the **functional and non-functional requirements mentioned above**.
 
+## Screenshots
+
+**CRUD Operations**
+
 ![CRUD Operations](https://raw.githubusercontent.com/smv1999/File-Based-Key-Value-Datastore/main/CRUD_Operations.png?token=AKHIZQI2AVL3LV7HUNMJWRC76G4R2)
+
+**Error Responses**
+
 ![Error Messages](https://raw.githubusercontent.com/smv1999/File-Based-Key-Value-Datastore/main/Error_Messages.png?token=AKHIZQIR5XY2FKL3S56Z3IC76G4VS)
+
