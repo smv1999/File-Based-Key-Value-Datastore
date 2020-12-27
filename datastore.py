@@ -1,5 +1,7 @@
 import time
 import json
+from threading import *
+import concurrent.futures
 
 MAX_DATA_SIZE = 1000000000
 MAX_VAL_SIZE = 16384
@@ -12,6 +14,13 @@ class DataStore:
     # Use syntax : datastore_obj.create(key, value, time_to_live) where time_to_live is optional and is in seconds
 
     def create(self, key, value, time_to_live=0):
+        t1 = Thread(target=(self.create_utility), args=(
+            key, value, time_to_live))  # as per the operation
+        t1.daemon = True
+        t1.start()
+
+    # Utility method for performing create operation
+    def create_utility(self, key, value, time_to_live=0):
         if key in self.datastore:
             print('error: This key already exists.')
         else:
@@ -31,6 +40,12 @@ class DataStore:
     # Read operation
     # Use syntax : datastore_obj.read(key)
     def read(self, key):
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future = executor.submit(self.read_utility, key)
+            return future.result()
+
+    # Utility method for performing read operation
+    def read_utility(self, key):
         if key not in self.datastore:
             print('error: Given key does not exist in datastore')
             return
@@ -38,17 +53,24 @@ class DataStore:
             data = self.datastore[key]
             if data['time_to_live'] != 0:
                 if time.time() < data['time_to_live']:
-                    return json.dumps({key: data['value']})
+                    return json.dumps({key: self.datastore[key]['value']})
                 else:
                     print('error: Time of ' + key + ' has expired')
                     return
             else:
                 data = self.datastore[key]
-                return json.dumps({key: data['value']})
+                return json.dumps({key: self.datastore[key]['value']})
 
     # Delete operation
     # Use syntax : datastore_obj.delete(key)
     def delete(self, key):
+        t3 = Thread(target=(self.delete_utility),
+                    args=(key,))  # as per the operation
+        t3.daemon = True
+        t3.start()
+    # Utility method for performing delete operation
+
+    def delete_utility(self, key):
         if key not in self.datastore:
             print('error: Given key does not exist in datastore')
         else:
@@ -68,6 +90,12 @@ class DataStore:
     # Additional Update / Modify operation within its expiry time
     # Use syntax : datastore_obj.update(key, value)
     def update(self, key, value):
+        t4 = Thread(target=(self.update_utility), args=(
+            key, value))  # as per the operation
+        t4.daemon = True
+        t4.start()
+
+    def update_utility(self, key, value):
         if key not in self.datastore:
             print('error: Given key does not exist in datastore')
         else:
