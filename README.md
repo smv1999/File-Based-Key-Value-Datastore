@@ -32,9 +32,9 @@ The application has been developed as a library so that users can just import it
 The application **doesn't have any Windows specific dependencies and should run without any problems in Mac and Linux as well**.
 
 ## File Structure
-```datastore.py``` - The library that contains the methods for performing CRUD Operations.
-```example.py``` - An example to demonstrate the CRUD Operations.
-```datastore.json``` - Used for storing the JSON objects
+* ```datastore.py``` - The library that contains the methods for performing CRUD Operations.
+* ```example.py``` - An example to demonstrate the CRUD Operations.
+* ```datastore.json``` - Used for storing the JSON objects
 
 ## Screenshots
 
